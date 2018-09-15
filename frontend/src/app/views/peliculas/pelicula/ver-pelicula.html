@@ -1,0 +1,32 @@
+<div *ngIf="pelicula" class="container-fluid row">
+    <div class="col-lg-4">
+        <img class="caratura_pelicula" src="{{url + 'obtener-caratura-pelicula/' + pelicula.caratura}}">
+    </div>    
+
+    <div class="col-lg-8 ver-pelicula">
+        <p><strong>Titulo: </strong>{{pelicula.titulo}}</p>
+        <p><strong>Año: </strong>{{pelicula.ano}}</p>
+        <p><strong>Duración: </strong>{{pelicula.duracion}}</p>
+        <p><strong>País: </strong>{{pelicula.pais}}</p>
+        <p><strong>Director: </strong>{{pelicula.director}}</p>
+        <p><strong>Guión: </strong>{{pelicula.guionista}}</p>
+        <p><strong>Música: </strong>{{pelicula.compositor}}</p>
+        <p><strong>Fotográfo: </strong>{{pelicula.fotografo}}</p>
+        <p><strong>Reparto: </strong>{{pelicula.reparto}}</p>
+        <p><strong>Productor: </strong>{{pelicula.productor}}</p>
+        <p><strong>Genero: </strong>{{pelicula.genero}}</p>
+        <p><strong>Sinopsis: </strong>{{pelicula.sinopsis}}</p>
+
+        <p>
+            <a [routerLink]="['/peliculas']" *ngIf="identidad && identidad.rol == 'Administrador'" class="btn btn-default volver">Volver</a>
+        </p>
+
+        <div *ngIf="pelicula.archivo && pelicula.archivo != 'null'" class="col-lg-12">
+            <video controls class="ver_video_pelicula" id="player">
+                <source id="mp3-source" src="{{url + 'obtener-archivo-pelicula/' + pelicula.archivo}}" type="video/mp4">
+                Tu navegador no es compatible con HTML5
+            </video>
+        </div>
+        
+    </div>
+</div>

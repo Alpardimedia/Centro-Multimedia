@@ -1,0 +1,108 @@
+html, body{
+    margin: 0px;
+    height: 100%;
+    background-color: #f5f5f5;
+}
+
+.central{
+    height: 85%;
+    overflow-y: scroll;
+}
+
+.barra-superior{
+    width: 91.6%;
+    float: right;
+}
+
+.dropdown-menu{
+    background-color: #444580;
+}
+
+.navbar-nav .dropdown .dropdown-toggle{
+    background-color: #444580 !important;
+    z-index: 1000;
+}
+
+.dropdown-menu li a:hover{
+    background-color: #444580;
+}
+
+.activado{
+    border-bottom: 3px solid white;
+    padding-bottom: 3px;
+}
+
+.navbar-default{
+    background-color: #444580;
+    border-color: #e7e7e7;
+}
+
+.glyphicon{
+    color: #e7e7e7;
+    margin-right: 5px;
+}
+
+.titulo-barra a,
+.navbar-nav a{
+    color: #e7e7e7 !important;
+}
+
+.navegacion{
+    text-align: center;
+    color: white;
+    background-color: #444580;
+    height: 100%;
+}
+
+.navegacion a{
+    color: #e7e7e7 !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    text-decoration: none;
+}
+
+.navegacion a:hover{
+    color: white;
+}
+
+.navegacion .glyphicon{
+    font-size: 25px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.barra-lateral{
+    height: 60px;
+    padding: 5px;
+}
+
+.titulo-barra{
+    margin: -3px;
+}
+
+#logeo_usuario{
+    background-color: #444580;
+    position: absolute;
+    bottom: 45px;
+    border-top: 1px solid #ffffff;
+    width: 75%;
+}
+
+#logeo_usuario .imagen_usuario{
+    background-color: #444580;
+    border-radius: 100px;
+    height: 57px;
+    width: 57px;
+    margin: 0 auto;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+#logeo_usuario .imagen_usuario img{
+    width: 57px;
+}
+
+.cerrarSesion{
+    cursor: pointer;
+}

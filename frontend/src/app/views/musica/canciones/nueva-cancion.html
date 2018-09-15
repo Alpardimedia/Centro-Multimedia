@@ -1,0 +1,74 @@
+<div class="container-fluid" *ngIf="identidad && identidad.rol == 'Administrador'">
+        <h1>Crear nueva cancion</h1>
+    
+        <form #formularioCancion="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div *ngIf="alertaMensaje" class="col-lg-12">
+                    <div class="alert alert-info alert-sm" role="alert">
+                        {{alertaMensaje}}
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                    <p>
+                        <label>Número de la canción</label>
+                        <input class="form-control" type="text" #numero="ngModel" name="numero" [(ngModel)]="cancion.numero" required >
+                        <span *ngIf="!numero.valid && numero.touched">
+                            El numero de la cancion es obligatorio
+                        </span>
+                    </p>
+    
+                    <p>
+                        <label>Nombre de la cancion</label>
+                        <input class="form-control" type="text" #nombre="ngModel" name="nombre" [(ngModel)]="cancion.nombre" required >
+                        <span *ngIf="!nombre.valid && nombre.touched">
+                            El nombre de la cancion es obligatorio
+                        </span>
+                    </p>
+    
+                    <p>
+                        <label>Duracion de la cancion</label>
+                        <input class="form-control" type="text" #duracion="ngModel" name="duracion" [(ngModel)]="cancion.duracion" required >
+                        <span *ngIf="!duracion.valid && duracion.touched">
+                            La duracion de la cancion es obligatoria
+                        </span>
+                    </p>
+    
+                    <div *ngIf="para_editar">
+                        <p>
+                            <label>Subir la cancion</label>
+                            <input type="file" (change)="fileChangeEvent($event)" >
+                        </p>
+                    </div>
+    
+                    <p>
+                        <input type="submit" value="{{tituloBoton}}" class="btn btn-success" [disabled]="!formularioCancion.form.valid" />
+                    </p>
+                </div>
+    
+                <div class="col-lg-offset-8">
+                    <div *ngIf="cancion.archivo && cancion.archivo != 'null' && para_editar" class="col-lg-12">
+                        <audio controls>
+                            <source src="{{url + 'obtener-archivo-cancion/' + cancion.archivo}}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    
+                    <div class="col-lg-12" style="margin-top: 15px;">
+                        <p>
+                            <label>Letra de la cancion</label>
+                            <textarea cols="50" rows="25" class="form-control" type="text" #letra="ngModel" name="letra" [(ngModel)]="cancion.letra"></textarea>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-offset-9">
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="container-fluid" *ngIf="!identidad || identidad.rol != 'Administrador'">
+        <h1>¡Acceso denegado!</h1>
+        <p>No tienes el permiso para acceder a está parte de la aplicación.</p>
+    </div>

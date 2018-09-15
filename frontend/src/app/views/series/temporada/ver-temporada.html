@@ -1,0 +1,65 @@
+<div *ngIf="temporada" class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-lg-3 col-sm-3">
+                <div class="temporada_imagen">
+                    <img src="{{url + 'obtener-imagen-temporada/' + temporada.imagen}}">
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-sm-9 datos-temporada">
+                <h3>Temporada {{temporada.numero}}</h3>
+
+                <h4>Fecha de estreno en {{temporada.lanzamiento}}</h4>
+
+                <h5>{{temporada.serie.titulo}}</h5>
+
+                <div class="btn_temporada" *ngIf="identidad.rol == 'Administrador'">
+                    <a [routerLink]="['/serie', temporada.serie._id]" class="btn btn-success volver">Volver</a>
+                    <a [routerLink]="['/nuevo-capitulo/', temporada._id]" class="btn btn-success nuevo_capitulo">Añadir capitulo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rotulo_album">
+        <h3>Capitulos:</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 container-fluid btn_nueva_temporada" *ngIf="identidad && temporada">
+            <div class="lista_albums">
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let capitulo of capitulos">
+                            <td class="columnas_series">
+                                <div class="portada_temporada" *ngIf="temporada.imagen && temporada.imagen != 'null'">
+                                    <a [routerLink]="['/reproductor/', capitulo._id]">
+                                        <img src="{{url + 'obtener-imagen-temporada/' + temporada.imagen}}">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="columnas_series">
+                                {{capitulo.temporada.numero + 'x' + capitulo.numero + ' ' + capitulo.titulo}}
+                            </td>
+                            <td class="columnas_series">
+                                {{capitulo.duracion}}
+                            </td>
+                            <td class="columnas_series" *ngIf="identidad.rol == 'Administrador'">
+                                <div class="btns-defecto" *ngIf="confirmado != capitulo._id">
+                                    <a [routerLink]="['/editar-capitulo/', capitulo._id]" class="btn btn-success">Editar</a>
+                                    <a (click)="onEliminarConfirmar(capitulo._id)" class="btn btn-danger">Borrar</a>
+                                </div>
+            
+                                <div class="btns-defecto" *ngIf="confirmado == capitulo._id">
+                                    <a (click)="onEliminarCapitulo(capitulo._id)" class="btn btn-danger">Eliminar</a>
+                                    <a (click)="onCancelarCapitulo()" class="btn btn-primary">Cancelar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

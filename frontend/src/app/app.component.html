@@ -1,0 +1,140 @@
+<!--Parte después de identificarse-->
+<div *ngIf="identidad">
+        <nav class="navbar navbar-default container-fluid barra-superior">
+            <div class="container barra-lateral">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header titulo-barra">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" [routerLink]="['/']">
+                        <span class="glyphicon glyphicon-th"></span>
+                        {{titulo}}
+                    </a>
+                </div>
+            
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a [routerLinkActive]="['activado']" [routerLink]="['/series']" ><span class="glyphicon glyphicon-th-large"></span> Series</a></li>
+                        <li><a [routerLink]="['/peliculas']"><span class="glyphicon glyphicon glyphicon-film"></span> Películas</a></li>
+                        <li><a [routerLink]="['/artistas']"><span class="glyphicon glyphicon-music"></span> Música</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+        </nav>
+</div>
+
+<div *ngIf="identidad" class="navegacion col-lg-1 col-sm-2 col-xs-3">
+    <nav id="logeo_usuario">
+        <div class="imagen_usuario">
+            <img id="logeo_imagen" src="{{url + 'obtener-imagen-usuario/' + identidad.imagen}}">
+        </div>
+        <span id="identidad_nombre">
+            {{identidad.nombre + ' ' + identidad.apellido}}
+        </span>
+
+        <a id="datos_usuario" [routerLink]="['/mis-datos']" [routerLinkActive]="['activado']">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            Mis datos
+        </a>
+    
+        <span [routerLink]="['']" (click)="cerrarSesion()" class="cerrarSesion">
+            <span class="glyphicon glyphicon-log-out"></span>
+            Salir
+        </span>
+    </nav>
+</div>
+
+<div [class.hidden]="!identidad" class="col-lg-11 col-sm-10 central">
+    <router-outlet></router-outlet>
+</div>
+
+<!--Formulario de inicio de sesión-->
+<div style="display: block;" *ngIf="!identidad" id="formularioIniciarSesion" class="text-center">
+  <form #formularioLogin="ngForm" (ngSubmit)="onSubmit()" class="form-signin">
+      <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
+      <div *ngIf="alertaMensaje">
+          <div class="alert alert-info alert-sm" role="alert">
+              <strong>Error: </strong> {{alertaMensaje}}
+          </div>
+      </div>
+
+      <p>
+        <label for="email" class="sr-only">Correo eletrónico</label>
+        <input type="email" id="inputEmail" #email="ngModel" name="email" [(ngModel)]="usuario.email" class="form-control" placeholder="Correo eletrónico" required autofocus>
+      </p>
+      <div *ngIf="!email.valid && email.touched" class="alert alert-danger alert-sm" role="alert">
+          El email es obligatorio
+      </div>
+      
+      <p>
+        <label for="password" class="sr-only">Contraseña</label>
+        <input type="password" id="inputPassword" #password="ngModel" name="password" [(ngModel)]="usuario.password" class="form-control" placeholder="Contraseña" required>
+      </p>
+      <div *ngIf="!password.valid && password.touched" class="alert alert-danger alert-sm" role="alert">
+            La contraseña es obligatoria
+        </div>
+
+      <div class="checkbox mb-3 text-center">
+          <label>
+              <p>¿No tienes una cuenta en la plataforma? </p>
+              <p><a class="btn btn-success btn-sm" (click)="mostrarRegistro()">Registrate</a></p>
+          </label>
+      </div>
+      <button class="btn btn-md btn-primary btn-block" type="submit">Entrar</button>
+      <p></p>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018 - <a href="#" class="empresa">Alpardimedia</a></p>
+  </form>
+</div>
+
+<!--Formulario de registro-->
+<div style="display: none" *ngIf="!identidad" id="formularioRegistro" class="text-center">
+  <form #formularioRegistro="ngForm" (ngSubmit)="onSubmitRegistro()" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
+    <div *ngIf="alertaRegistro">
+        <div class="alert alert-info alert-sm" role="alert">
+            {{alertaRegistro}}
+        </div>
+    </div>
+
+    <p>
+        <label for="nombre" class="sr-only">Nombre</label>
+        <input type="text" id="inputNombre" #nombre="ngModel" name="nombre" [(ngModel)]="usuario_registro.nombre" class="form-control" placeholder="Nombre" required autofocus>
+    </p>
+    <div *ngIf="!nombre.valid && nombre.touched" class="alert alert-danger alert-sm" role="alert">
+        El nombre es obligatorio
+    </div>
+
+    <p>
+        <label for="apellido" class="sr-only">Apellido</label>
+        <input type="text" id="inputApellido" #apellido="ngModel" name="apellido" [(ngModel)]="usuario_registro.apellido" class="form-control" placeholder="Apellido" required autofocus>
+    </p>
+    <div *ngIf="!apellido.valid && apellido.touched" class="alert alert-danger alert-sm" role="alert">
+        El apellido es obligatorio
+    </div>
+
+    <p>
+        <label for="email" class="sr-only">Correo eletrónico</label>
+        <input type="email" id="inputEmail" #email="ngModel" name="email" [(ngModel)]="usuario_registro.email" class="form-control" placeholder="Correo eletrónico" required autofocus>
+    </p>
+    <div *ngIf="!email.valid && email.touched" class="alert alert-danger alert-sm" role="alert">
+        El email es obligatorio
+    </div>
+
+    <p>
+        <label for="password" class="sr-only">Contraseña</label>
+        <input type="password" id="inputPassword" #password="ngModel" name="password" [(ngModel)]="usuario_registro.password" class="form-control" placeholder="Contraseña" required>
+    </p>
+    <div *ngIf="!password.valid && password.touched" class="alert alert-danger alert-sm" role="alert">
+        La contraseña es obligatoria
+    </div>
+
+    <button class="btn btn-md btn-primary btn-block" type="submit">Registrar</button>
+    <p></p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2018 - <a href="#" class="empresa">Alpardimedia</a></p>
+</form>
+</div>

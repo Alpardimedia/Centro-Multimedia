@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <h1>{{titulo}}</h1>
+    <a [routerLink]="['/nueva-pelicula']" *ngIf="identidad && identidad.rol == 'Administrador'" class="btn btn-default">Nueva pelicula</a>
+</div>
+
+<div class="container-fluid" *ngIf="identidad">
+
+    <div *ngFor="let pelicula of peliculas" class="contenedor_peliculas">        
+        <a [routerLink]="['/ver-pelicula', pelicula._id]">
+            <img src="{{url + 'obtener-caratura-pelicula/' + pelicula.caratura}}">
+        </a>
+
+        <div class="pelicula">
+            <p>{{pelicula.titulo}}</p>
+            {{pelicula.ano}}
+        </div>
+
+        <div *ngIf="identidad.rol == 'Administrador'">
+            <div class="btns-defecto" *ngIf="confirmado != pelicula._id">
+                <a [routerLink]="['/editar-pelicula/', pelicula._id]" class="btn btn-success">Editar</a>
+                <a (click)="onEliminarConfirmar(pelicula._id)" class="btn btn-danger">Borrar</a>
+            </div>
+
+            <div class="btns-defecto" *ngIf="confirmado == pelicula._id">
+                <a (click)="onEliminarPelicula(pelicula._id)" class="btn btn-danger">Eliminar</a>
+                <a (click)="onCancelarPelicula()" class="btn btn-primary">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>

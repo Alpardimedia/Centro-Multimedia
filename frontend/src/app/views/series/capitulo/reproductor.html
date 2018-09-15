@@ -1,0 +1,11 @@
+<div *ngIf="capitulo" class="marco_video row">
+    <h4>{{capitulo.temporada.serie.titulo}}</h4>
+    <h4>{{capitulo.temporada.numero + 'x' + capitulo.numero + ' - ' + capitulo.titulo}}</h4>
+    <video controls>
+        <source src="{{url + 'obtener-archivo-capitulo/' + capitulo.archivo}}" type="video/mp4">
+        Tu navegador no es compatible con HTML5
+    </video>
+    <div class="col-lg-12">
+        <a [routerLink]="['/temporada', capitulo.temporada._id]" class="btn btn-success volver">Volver</a>
+    </div>
+</div>

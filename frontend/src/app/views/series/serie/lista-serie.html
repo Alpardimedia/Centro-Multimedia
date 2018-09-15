@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <h1>{{titulo}}</h1>
+    <a [routerLink]="['/nueva-serie']" *ngIf="identidad && identidad.rol == 'Administrador'" class="btn btn-default">Nuevo serie</a>
+</div>
+
+<div class="container-fluid" *ngIf="identidad">
+
+    <div *ngFor="let serie of series" class="contenedor_series">        
+        <a [routerLink]="['/serie', serie._id]">
+            <img src="{{url + 'obtener-imagen-serie/' + serie.imagen}}">
+        </a>
+
+        <div class="serie">
+            <p>{{serie.titulo}}</p>
+            {{serie.ano}}
+        </div>
+
+        <div *ngIf="identidad.rol == 'Administrador'">
+            <div class="btns-defecto" *ngIf="confirmado != serie._id">
+                <a [routerLink]="['/editar-serie', serie._id]" class="btn btn-success">Editar</a>
+                <a (click)="onEliminarConfirmar(serie._id)" class="btn btn-danger">Borrar</a>
+            </div>
+
+            <div class="btns-defecto" *ngIf="confirmado == serie._id">
+                <a (click)="onEliminarSerie(serie._id)" class="btn btn-danger">Eliminar</a>
+                <a (click)="onCancelarSerie()" class="btn btn-primary">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>

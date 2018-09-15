@@ -1,0 +1,53 @@
+<div class="container-fluid" *ngIf="identidad && identidad.rol == 'Administrador'">
+    <h1>Crear nueva temporada</h1>
+
+    <form #formularioTemporada="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div *ngIf="alertaMensaje" class="col-lg-12">
+                <div class="alert alert-info alert-sm" role="alert">
+                    {{alertaMensaje}}
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <p>
+                    <label>Nº Temporada</label>
+                    <input class="form-control" type="text" #numero="ngModel" name="numero" [(ngModel)]="temporada.numero" required >
+                    <span *ngIf="!numero.valid && numero.touched">
+                        El nº de la temporada es obligatorio
+                    </span>
+                </p>
+
+                <p>
+                    <label>Fecha de lenzamiento</label>
+                    <input class="form-control" type="text" #lanzamiento="ngModel" name="lanzamiento" [(ngModel)]="temporada.lanzamiento" required >
+                    <span *ngIf="!lanzamiento.valid && lanzamiento.touched">
+                        La fecha de lanzamiento es obligatorio
+                    </span>
+                </p>
+
+                <div *ngIf="para_editar">
+                    <p>
+                        <label>Subir la imagen de la temporada</label>
+                        <input type="file" (change)="fileChangeEvent($event)" >
+                    </p>
+                </div>
+
+                <p>
+                    <input type="submit" value="{{tituloBoton}}" class="btn btn-success" [disabled]="!formularioCancion.form.valid" />
+                </p>
+            </div>
+
+            <div *ngIf="para_editar" class="col-lg-offset-9">
+                <div *ngIf="temporada.imagen && temporada.imagen != 'null' && para_editar" class="col-lg-6">
+                    <img class="artista_imagen_para_editar" src="{{url + 'obtener-imagen-temporada/' + temporada.imagen}}">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid" *ngIf="!identidad || identidad.rol != 'Administrador'">
+    <h1>¡Acceso denegado!</h1>
+    <p>No tienes el permiso para acceder a está parte de la aplicación.</p>
+</div>

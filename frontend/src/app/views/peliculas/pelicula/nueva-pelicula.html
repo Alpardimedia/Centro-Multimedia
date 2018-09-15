@@ -1,0 +1,159 @@
+<div class="container-fluid" *ngIf="identidad && identidad.rol == 'Administrador'">
+    <h1>Crear nueva película</h1>
+
+    <form #formularioPelicula="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div *ngIf="alertaMensaje" class="col-lg-12">
+                <div class="alert alert-info alert-sm" role="alert">
+                    {{alertaMensaje}}
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <p>
+                    <label>Titulo de la pelicula</label>
+                    <input class="form-control" type="text" #titulo="ngModel" name="titulo" [(ngModel)]="pelicula.titulo" required >
+                    <span *ngIf="!titulo.valid && titulo.touched">
+                        El titulo de la pelicula es obligatorio
+                    </span>
+                </p>
+
+                <p>
+                    <label>Año de estreno de la pelicula</label>
+                    <input class="form-control" type="text" #ano="ngModel" name="ano" [(ngModel)]="pelicula.ano" required >
+                    <span *ngIf="!ano.valid && ano.touched">
+                        El año de estreno de la pelicula es obligatorio
+                    </span>
+                </p>
+
+                <p>
+                    <label>Duración de la pelicula</label>
+                    <input class="form-control" type="text" #duracion="ngModel" name="duracion" [(ngModel)]="pelicula.duracion" required >
+                    <span *ngIf="!duracion.valid && duracion.touched">
+                        La duracion de la pelicula es obligatorio
+                    </span>
+                </p>
+
+                <p>
+                    <label>País de la película</label>
+                    <input class="form-control" type="text" #pais="ngModel" name="pais" [(ngModel)]="pelicula.pais" required >
+                    <span *ngIf="!pais.valid && pais.touched">
+                        El país de la pelicula es obligatorio
+                    </span>
+                </p>
+
+                <p>
+                    <label>Director de la pelicula</label>
+                    <input class="form-control" type="text" #director="ngModel" name="director" [(ngModel)]="pelicula.director" required >
+                    <span *ngIf="!director.valid && director.touched">
+                        El director de la pelicula es obligatorio
+                    </span>
+                </p>
+
+                <p>
+                    <label>Guionistas de la pelicula</label>
+                    <input class="form-control" type="text" #guionista="ngModel" name="guionista" [(ngModel)]="pelicula.guionista" required >
+                    <span *ngIf="!guionista.valid && guionista.touched">
+                        Los guionistas de la pelicula son obligatorios
+                    </span>
+                </p>
+            </div>
+
+            <div class="col-lg-6">
+                <p>
+                    <label>Compositor de la pelicula</label>
+                    <input class="form-control" type="text" #compositor="ngModel" name="compositor" [(ngModel)]="pelicula.compositor" required >
+                    <span *ngIf="!compositor.valid && compositor.touched">
+                        Los compositores de la pelicula son obligatorios
+                    </span>
+                </p>
+
+                <p>
+                    <label>Fotografos de la pelicula</label>
+                    <input class="form-control" type="text" #fotografo="ngModel" name="fotografo" [(ngModel)]="pelicula.fotografo" required >
+                    <span *ngIf="!fotografo.valid && fotografo.touched">
+                        Los fotografos de la pelicula son obligatorios
+                    </span>
+                </p>
+
+                <p>
+                    <label>Reparto de la pelicula</label>
+                    <textarea cols="30" rows="4" class="form-control" type="text" #reparto="ngModel" name="reparto" [(ngModel)]="pelicula.reparto" required></textarea>
+                    <span *ngIf="!reparto.valid && reparto.touched">
+                        El reparto de la pelicula es obligatoria
+                    </span>
+                </p>
+
+                <p>
+                    <label>Productores de la pelicula</label>
+                    <input class="form-control" type="text" #productor="ngModel" name="productor" [(ngModel)]="pelicula.productor" required >
+                    <span *ngIf="!productor.valid && productor.touched">
+                        Los productores de la pelicula son obligatorios
+                    </span>
+                </p>
+
+                <p>
+                    <label>Generos de la pelicula</label>
+                    <input class="form-control" type="text" #genero="ngModel" name="genero" [(ngModel)]="pelicula.genero" required >
+                    <span *ngIf="!genero.valid && genero.touched">
+                        Los generos de la pelicula son obligatorios
+                    </span>
+                </p>
+            </div>
+
+            <div class="col-lg-12">
+                <p>
+                    <label>Sinopsis</label>
+                    <textarea cols="30" rows="2" class="form-control" type="text" #sinopsis="ngModel" name="sinopsis" [(ngModel)]="pelicula.sinopsis" required></textarea>
+                    <span *ngIf="!sinopsis.valid && sinopsis.touched">
+                        La sinopsis de la pelicula es obligatoria
+                    </span>
+                </p>
+            </div>
+
+            <div class="col-lg-6">
+                <div *ngIf="para_editar">
+                    <p>
+                        <label>Subir la pelicula</label>
+                        <input type="file" (change)="fileChangeEvent($event)" >
+                    </p>
+                </div>
+
+                <div *ngIf="para_editar" class="col-lg-6">
+                    <div *ngIf="pelicula.archivo && pelicula.archivo != 'null' && para_editar">
+                        <video controls class="editar_pelicula" id="player">
+                            <source id="mp3-source" src="{{url + 'obtener-archivo-pelicula/' + pelicula.archivo}}" type="video/mp4">
+                            Tu navegador no es compatible con HTML5
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div *ngIf="para_editar">
+                        <p>
+                            <label>Subir la caratura de la pelicula</label>
+                            <input type="file" (change)="fileChangeEvent($event)" >
+                        </p>
+                    </div>
+    
+                    <div *ngIf="para_editar" class="col-lg-6">
+                        <div *ngIf="pelicula.caratura && pelicula.caratura != 'null' && para_editar">
+                            <img id="caratura_imagen_para_editar" class="caratura_imagen_para_editar" src="{{url + 'obtener-caratura-pelicula/' + pelicula.caratura}}">
+                        </div>
+                    </div>
+            </div>
+
+            <div class="col-lg-12">
+                <p>
+                    <input type="submit" value="{{tituloPagina}}" class="btn btn-success" [disabled]="!formularioPelicula.form.valid" />
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid" *ngIf="!identidad || identidad.rol != 'Administrador'">
+    <h1>¡Acceso denegado!</h1>
+    <p>No tienes el permiso para acceder a está parte de la aplicación.</p>
+</div>

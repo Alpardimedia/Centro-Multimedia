@@ -1,0 +1,76 @@
+<div *ngIf="serie" class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-lg-3 col-sm-3">
+                <div class="serie_imagen">
+                    <img src="{{url + 'obtener-imagen-serie/' + serie.imagen}}">
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-sm-9 datos-serie">
+                <h3>{{serie.titulo}}</h3>
+
+                <h4>{{serie.ano}}</h4>
+
+                <div class="sinopsis">
+                    <p>{{serie.sinopsis}}</p>
+                </div>
+
+                <div *ngFor="let actor of actores">
+                    <div class="col-lg-12 actor_imagen_serie">
+                        <a [routerLink]="['/actor', actor._id]">
+                            <img src="{{url + 'obtener-imagen-actor/' + actor.imagen}}">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 btn_serie" *ngIf="identidad.rol == 'Administrador'">
+                    <a [routerLink]="['/series']" class="btn btn-success volver">Volver</a>
+                    <a [routerLink]="['/nueva-serie-actor/', serie._id]" class="btn btn-success volver">Añadir actor</a>
+                    <a [routerLink]="['/nueva-temporada/', serie._id]" class="btn btn-success nueva_temporada">Añadir temporada</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rotulo_album">
+        <h3>Temporadas:</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 container-fluid btn_nueva_temporada" *ngIf="identidad && serie">
+            <div class="lista_albums">
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let temporada of temporadas">
+                            <td class="columnas_series">
+                                <div class="portada_temporada" *ngIf="temporada.imagen && temporada.imagen != 'null'">
+                                    <a [routerLink]="['/temporada', temporada._id]">
+                                        <img src="{{url + 'obtener-imagen-temporada/' + temporada.imagen}}">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="columnas_series">
+                                Temporada {{temporada.numero}}
+                            </td>
+                            <td class="columnas_series">
+                                {{temporada.lanzamiento}}
+                            </td>
+                            <td class="columnas_series" *ngIf="identidad.rol == 'Administrador'">
+                                <div class="btns-defecto" *ngIf="confirmado != temporada._id">
+                                    <a [routerLink]="['/editar-temporada', temporada._id]" class="btn btn-success">Editar</a>
+                                    <a (click)="onEliminarConfirmar(temporada._id)" class="btn btn-danger">Borrar</a>
+                                </div>
+            
+                                <div class="btns-defecto" *ngIf="confirmado == temporada._id">
+                                    <a (click)="onEliminarTemporada(temporada._id)" class="btn btn-danger">Eliminar</a>
+                                    <a (click)="onCancelarTemporada()" class="btn btn-primary">Cancelar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,161 @@
+@font-face {
+    font-family: Alicia_Pais_Maravillas;
+    src: url('../../../assets/fonts/alice_in_wonderland/Alice_in_Wonderland_3.eot'), url('../../../assets/fonts/alice_in_wonderland/Alice_in_Wonderland_3.svg'), url('../../../assets/fonts/alice_in_wonderland/Alice_in_Wonderland_3.ttf'), url('../../../assets/fonts/alice_in_wonderland/Alice_in_Wonderland_3.woff');
+}
+
+@font-face {
+    font-family: Canon;
+    src: url('../../../assets/fonts/canon/CANON.eot'), url('../../../assets/fonts/canon/CANON.svg'), url('../../../assets/fonts/canon/CANON.ttf'), url('../../../assets/fonts/canon/CANON.woff');
+}
+
+@font-face {
+    font-family: Transformers;
+    src: url('../../../assets/fonts/transformers/transfrm.eot'), url('../../../assets/fonts/transformers/transfrm.svg'), url('../../../assets/fonts/transformers/transfrm.ttf'), url('../../../assets/fonts/transformers/transfrm.woff');
+}
+
+.contenedor_artistas{
+    margin: 20px 20px 20px 0px;
+    width: 200px;
+    height: 350px;
+    float: left;
+}
+
+.contenedor_artistas a img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.artista{
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.artista p{
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btns-defecto{
+    margin: 0 auto;
+    width: 87%;
+    margin-top: 10px;
+}
+
+
+
+
+
+.listado_artistas, .nuevo_artista{
+    margin-top: 10px;
+}
+
+.total_artistas{
+    margin-top: 0px;
+}
+
+.ver_fotografia_artista img{
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+}
+
+.datos-artista p{
+    text-align: justify;
+}
+
+.btn_artista,
+.volver{
+    border-radius: 15px;
+    background-color: #303287;
+    color: #fff;
+    border: 1px solid;
+}
+
+.btn_artista,
+.volver:hover{
+    border-radius: 15px;
+    background-color: #a2a3ec;
+    color: #000;
+    border: 1px solid;
+}
+
+.nuevo_album{
+    border-radius: 15px;
+    background-color: #303287;
+    color: #fff;
+    border: 1px solid;
+    width: 200px;
+}
+
+.nuevo_album:hover{
+    border-radius: 15px;
+    background-color: #a2a3ec;
+    color: #000;
+    border: 1px solid;
+}
+
+.rotulo_album h3{
+    margin-left: 15px;
+}
+
+.btn_cambiar_datos{
+    float: left;
+}
+
+.btn_cambiar_datos .volver{
+    width: 85px;
+}
+
+.btn_cambiar_datos .nuevo_album{
+    width: 125px;
+}
+
+.lista_albums{
+    margin: 15px 10px;
+    border-top: 1px solid #000;
+}
+
+.columnas_artistas, .columnas_artistas_albums{
+    width: 28%;
+    vertical-align: middle !important;
+}
+
+.fotografia_artista img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.nombre_artista a{
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nombre_artista a:hover{
+    color: #444580;
+    font-weight: bold;
+}
+
+.btns-defecto a{
+    width: 85px;
+}
+
+.artista_imagen_para_editar{
+    width: 350;
+    height: 350px;
+    object-fit: cover;
+}
+
+.artista_biografia{
+    height: 212px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 10px;
+    margin-left: -10px;
+    margin-bottom: 18px;
+}

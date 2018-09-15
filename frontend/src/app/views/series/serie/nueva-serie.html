@@ -1,0 +1,53 @@
+<div class="container-fluid" *ngIf="identidad && identidad.rol == 'Administrador'">
+    <h1>Crear nueva serie</h1>
+
+    <form #formularioSerie="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div *ngIf="alertaMensaje" class="col-lg-12">
+                <div class="alert alert-info alert-sm" role="alert">
+                    {{alertaMensaje}}
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <p>
+                    <label>Titulo</label>
+                    <input class="form-control" type="text" #titulo="ngModel" name="titulo" [(ngModel)]="serie.titulo" required >
+                    <span *ngIf="!titulo.valid && titulo.touched">
+                        El titulo es obligatorio
+                    </span>
+                </p>
+
+                <p>
+                    <label>Fecha de estreno</label>
+                    <input class="form-control" type="text" #ano="ngModel" name="ano" [(ngModel)]="serie.ano" required >
+                    <span *ngIf="!ano.valid && ano.touched">
+                        La fecha de estreno es obligatorio
+                    </span>
+                </p>
+
+                <div *ngIf="para_editar">
+                    <p>
+                        <label>Subir la imagen de la serie</label>
+                        <input type="file" (change)="fileChangeEvent($event)" >
+                    </p>
+                </div>
+
+                <p>
+                    <input type="submit" value="{{tituloPagina}}" class="btn btn-success" [disabled]="!formularioSerie.form.valid" />
+                </p>
+            </div>
+
+            <div *ngIf="para_editar" class="col-lg-offset-9">
+                <div *ngIf="serie.imagen && serie.imagen != 'null' && para_editar" class="col-lg-6">
+                    <img class="artista_imagen_para_editar" src="{{url + 'obtener-imagen-serie/' + serie.imagen}}">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid" *ngIf="!identidad || identidad.rol != 'Administrador'">
+    <h1>¡Acceso denegado!</h1>
+    <p>No tienes el permiso para acceder a está parte de la aplicación.</p>
+</div>
