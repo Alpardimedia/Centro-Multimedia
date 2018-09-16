@@ -1,0 +1,73 @@
+@font-face {
+    font-family: Alicia_Pais_Maravillas;
+    src: url('../../../assets/fonts/alice_in_wonderland/Alice_in_Wonderland_3.eot'), url('../../../assets/fonts/alice_in_wonderland/Alice_in_Wonderland_3.svg'), url('../../../assets/fonts/alice_in_wonderland/Alice_in_Wonderland_3.ttf'), url('../../../assets/fonts/alice_in_wonderland/Alice_in_Wonderland_3.woff');
+}
+
+@font-face {
+    font-family: Canon;
+    src: url('../../../assets/fonts/canon/CANON.eot'), url('../../../assets/fonts/canon/CANON.svg'), url('../../../assets/fonts/canon/CANON.ttf'), url('../../../assets/fonts/canon/CANON.woff');
+}
+
+@font-face {
+    font-family: Transformers;
+    src: url('../../../assets/fonts/transformers/transfrm.eot'), url('../../../assets/fonts/transformers/transfrm.svg'), url('../../../assets/fonts/transformers/transfrm.ttf'), url('../../../assets/fonts/transformers/transfrm.woff');
+}
+
+.contenedor_peliculas{
+    margin: 20px 20px 20px 0px;
+    width: 200px;
+    height: 225px;
+    float: left;
+}
+
+.contenedor_peliculas a img{
+    width: 200px;
+    height: 250px;
+    object-fit: fill;
+}
+
+.caratura_imagen_para_editar{
+    width: 300px;
+    height: 350px;
+    object-fit: fill;
+    float: none;
+}
+
+.caratura_pelicula{
+    width: 500px;
+    height: 721px;
+    object-fit: fill;
+}
+
+.pelicula{
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.pelicula p{
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.editar_pelicula{
+    margin-top: 40px;
+    width: 600px !important;
+}
+
+.ver-pelicula{
+    
+}
+
+.ver_video_pelicula{
+    width: 500px !important;
+    margin-left: -15px;
+}
+
+.btns-defecto{
+    margin: 0 auto;
+    width: 87%;
+    margin-top: 15px !important;
+}

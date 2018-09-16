@@ -1,0 +1,29 @@
+.marco_video{
+    margin: 0 auto; 
+    text-align: center;
+}
+
+.editar_video{
+    width: 600px !important;
+}
+
+.marco_video video{
+    width: 70%; 
+    text-align: center; 
+    margin: 0px auto; 
+    padding-top: 10px;
+}
+
+.volver{
+    border-radius: 15px;
+    background-color: #303287;
+    color: #fff;
+    border: 1px solid;
+}
+
+.volver:hover{
+    border-radius: 15px;
+    background-color: #a2a3ec;
+    color: #000;
+    border: 1px solid;
+}

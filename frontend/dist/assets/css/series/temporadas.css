@@ -1,0 +1,48 @@
+.temporada_imagen img{
+    height: auto;
+    width: 300px !important;
+    object-fit: cover;
+}
+
+.datos-temporada p{
+    text-align: justify;
+}
+
+.btn_temporada .nuevo_capitulo,
+.volver{
+    border-radius: 15px;
+    background-color: #303287;
+    color: #fff;
+    border: 1px solid;
+}
+
+.btn_temporada .nuevo_capitulo:hover,
+.volver:hover{
+    border-radius: 15px;
+    background-color: #a2a3ec;
+    color: #000;
+    border: 1px solid;
+}
+
+.lista_capitulos{
+    margin: 15px 10px;
+}
+
+.temporada_imagen_para_editar{
+    width: 350px;
+    height: 480px;
+    object-fit: cover;
+}
+
+.columnas_capitulos{
+    width: 20%;
+    vertical-align: middle !important;
+}
+
+.portada_temporada img{
+    width: 100px;
+}
+
+.btns-defecto a{
+    width: 85px;
+}
