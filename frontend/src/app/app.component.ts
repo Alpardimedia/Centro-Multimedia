@@ -44,8 +44,11 @@ export class AppComponet implements OnInit{
         this.identidad = identidad;
 
         if(!this.identidad._id){
+          console.log("Hay problemas al iniciar sesion");
           this.alertaMensaje = "El usuario no está correctamente identificado";
         }else{
+          console.log("Usuario inicio sesion");
+          
           // Crear el elemento para guardar el usuario en el LocalStorage para que mantenga su sesión
           localStorage.setItem('identidad', JSON.stringify(identidad));
 
